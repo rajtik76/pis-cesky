@@ -82,9 +82,6 @@ Podrobně analyzované rozbory jsou v adresáři `analyza/`:
 | blog.root.cz   | 27 článků + diskuse (2020-2021), 10 autorů | komunitní blogy, syrové psaní    |
 | nettech.cz     | 10 článků (2015-2021)                      | technický návod, malá firma      |
 
-Všech 73 článků pochází z jednoho okruhu - české PHP a linuxové komunity - takže
-korpus zachycuje styl téhle scény, ne českou technickou prózu obecně.
-
 Nástroje ve složce `nastroje/` navíc stavějí na veřejných datech: VALLEX
 4.5 (valenční slovník sloves, ÚFAL UK, CC BY-NC-SA) a české Wikipedii
 (frekvence spojení, CC BY-SA).
