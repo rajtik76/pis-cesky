@@ -125,7 +125,7 @@ skills/pis-cesky/
   vicefazove.md          draft → korektura bez záměru → přepis
 skills/technicky/        zkratka /pis-cesky:technicky
 skills/uredne/           zkratka /pis-cesky:uredne
-analyza/                 rozbory korpusů, ze kterých pravidla vznikla
+analyza/                 rozbory zdrojů, ze kterých pravidla vznikla
 nastroje/                ověřování vazeb a spojení v datech
 priklady/                stejná zadání se skillem a bez něj
 ```
@@ -304,7 +304,7 @@ režim. Osobní text čeká na rozbor vzorků, marketing na vzorky samotné.
 U úředního stylu vím o dvou mezerách. Korpus stojí na textech, které píší
 úřady - žádost, odvolání ani stížnost z druhé strany v něm nejsou jako
 samostatné dokumenty, jen citované uvnitř odpovědí (zato početně).
-A metodika GFŘ je v korpusu oříznutá na 12 tisíc slov, takže z ní stavba
+A metodika GFŘ je ve vzorku oříznutá na 12 tisíc slov, takže z ní stavba
 delšího dokumentu vyčtená není.
 
 Pravidla ve skillu vznikají z chyb, které při psaní nachytám a ručně opravím.
