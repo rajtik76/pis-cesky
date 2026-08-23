@@ -13,8 +13,8 @@ pravidla pro technický žánr.
 Odvozeno ze tří korpusů českých textů psaných lidmi v letech 2005-2022:
 blog.nette.org (36 článků, 6 autorů), blog.root.cz (27 článků + diskuse,
 10 autorů), nettech.cz (10 článků). Podrobnosti v analyza/. Platí pro
-technické psaní; osobní esej, marketing a úřední texty vlastní soubor
-zatím nemají.
+technické psaní; úřední texty mají vlastní soubor `uredni.md`, osobní
+esej a marketing zatím ne.
 
 ## Pozice: byl jsi u toho
 

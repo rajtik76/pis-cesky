@@ -12,7 +12,8 @@ kdo záměr nezná, a přepíšeš. Kroky drž v pořadí.
 ## 1. Draft
 
 Urči žánr a načti pravidla: kořenový `SKILL.md` (pozice pisatele, stavba
-věty od slovesa, slovosled, kontroly) plus žánrový soubor (`technicky.md`).
+věty od slovesa, slovosled, kontroly) plus stylový soubor podle žánru
+(`technicky.md`, `uredni.md`).
 
 Než napíšeš první větu, pojmenuj materiál podle kořenového `SKILL.md`: co
 zadání nabízí, co znáš z první ruky, kde jsi ignorant. Formu odvoď odtud.

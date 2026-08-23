@@ -1,0 +1,12 @@
+{
+  "name": "pis-cesky",
+  "description": "Psaní českých textů, které nezní jako generovaná šablona. Pravidla destilovaná z korpusů českých textů psaných lidmi před rokem 2022.",
+  "version": "0.2.0",
+  "author": {
+    "name": "Vladislav Rajtmajer"
+  },
+  "homepage": "https://github.com/rajtik76/pis-cesky",
+  "repository": "https://github.com/rajtik76/pis-cesky",
+  "license": "MIT",
+  "keywords": ["cestina", "czech", "writing", "anti-slop", "style"]
+}

@@ -15,15 +15,22 @@ správné projde i klišé.
 
 ## Ohlas se
 
-První řádek odpovědi, ve které tenhle skill použiješ, patří hlášce:
+První řádek odpovědi, ve které tenhle skill použiješ, patří hlášce
+s uvedením stylu, podle kterého text vzniká:
 
 ```
-🇨🇿 Píšu česky (skill aktivován)
+🇨🇿 Píšu česky (styl: technický)
+🇨🇿 Píšu česky (styl: úřední)
+🇨🇿 Píšu česky (styl: obecný)
 ```
 
-Vypiš ji jednou na začátku, ne u každého odstavce, a pak pokračuj běžnou
-odpovědí. Uživatel podle ní pozná, že text vzniká podle pravidel, a ne
-z výchozího nastavení modelu.
+Styl odpovídá modulu z tabulky níže (`technicky.md` → technický,
+`uredni.md` → úřední); když žádný modul nesedí a píšeš jen podle tohoto
+souboru, uveď "obecný". Když text spadá do dvou stylů, vypiš oba
+("styl: technický + úřední"). Hlášku vypiš jednou na začátku, ne u
+každého odstavce, a pak pokračuj běžnou odpovědí. Uživatel podle ní
+pozná, že text vzniká podle pravidel, a ne z výchozího nastavení modelu -
+a podle stylu pozná, která pravidla se použila.
 
 ## Nejdřív urči žánr a režim
 
@@ -33,9 +40,23 @@ zadání si navíc otevři soubor, který odpovídá:
 | Píšeš | Otevři |
 |---|---|
 | technický článek, návod, dokumentaci, README, popis architektury | `technicky.md` |
-| osobní text, marketing, úřední komunikaci | zatím nevzniklo - drž se pravidel níže |
+| žádost, odvolání, stížnost, odpověď úřadu, rozhodnutí, metodiku, formální dopis instituci | `uredni.md` |
+| osobní text, marketing | zatím nevzniklo - drž se pravidel níže |
 
 Když text spadá do dvou kategorií, otevři oba soubory.
+
+Styl si můžeš nechat určit i zvenčí. Když je skill vyvolaný
+s argumentem, který pojmenovává styl, žánr neurčuj a otevři rovnou
+odpovídající soubor:
+
+- `technicky.md` - argument `technicky`, `technický`, `tech`
+- `uredni.md` - argument `uredne`, `úředně`, `uredni`, `urad`
+
+Ber to volně: rozhoduje význam, ne přesný tvar. Argument bývá zamíchaný
+do zadání (`/pis-cesky uredne napiš odvolání`), takže styl z něj vyzobni
+a zbytek ber jako zadání textu. Totéž platí, když si o styl řekne
+uživatel větou ("piš to úředně"). Když argument žádný styl nepojmenovává,
+urči žánr sám podle tabulky výše.
 
 ## Zeptej se na korekturu, než začneš psát
 

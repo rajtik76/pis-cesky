@@ -1,0 +1,15 @@
+{
+  "name": "pis-cesky",
+  "description": "Skill pro psaní českých textů, které nezní jako generovaná šablona.",
+  "owner": {
+    "name": "Vladislav Rajtmajer",
+    "url": "https://github.com/rajtik76"
+  },
+  "plugins": [
+    {
+      "name": "pis-cesky",
+      "source": "./",
+      "description": "Psaní českých textů, které nezní jako generovaná šablona. Obsahuje obecná pravidla, technický a úřední styl a vícefázový režim s korekturou."
+    }
+  ]
+}

@@ -25,11 +25,12 @@ a napíše text, který na první pohled nevypadá jako přeložený z angličti
 - Podkladem může být cokoli - téma, tvoje poznámky, stažená stránka, cizí
   dokument. Skill si z něj vezme informace, ale formulace ani stavbu
   nepřebírá; výstup je nový text.
-- **Žánrová pravidla má zatím jen technický sloh** - článek, návod,
-  dokumentace, README. Postavená jsou na rozboru reálných textů psaných
-  lidmi.
-- Osobní text, marketing a úřední komunikaci napíše taky, ale řídí se u nich
-  jen obecnou částí ale výsledek nemá o co opřít. Další styly budu přidávat
+- **Vlastní žánrová pravidla mají zatím dva styly** - technický (článek,
+  návod, dokumentace, README) a úřední (žádost, odvolání, stížnost,
+  odpověď úřadu, metodika). Obojí je postavené na rozboru reálných textů
+  psaných lidmi.
+- Osobní text a marketing napíše taky, ale řídí se u nich jen obecnou
+  částí, takže výsledek nemá o co opřít. Další styly budu přidávat
   postupně, vždycky až po rozboru vzorků.
 - Umí si na sebe zavolat korekturu: nezávislý agent, který nezná zadání,
   projde draft a hledá chyby, které autor při vlastním čtení nevidí.
@@ -74,17 +75,39 @@ textů). A čeština? Nic! České repozitáře sice existují, ale opisují jed
 Pochází z českých textů psaných lidmi a publikovaných před listopadem 2022, tedy
 předtím, než se generovaný text dostal do běžného provozu.
 
-Podrobně analyzované rozbory jsou v adresáři `analyza/`:
+**Technický styl** - tři korpusy, ~100 tisíc slov. Rozbory v `analyza/`:
 
-| Zdroj          | Co odtud                                   | Žánr                             |
-|----------------|--------------------------------------------|----------------------------------|
-| blog.nette.org | 36 článků (2012-2022), 6 autorů            | profesionální technický blog     |
-| blog.root.cz   | 27 článků + diskuse (2020-2021), 10 autorů | komunitní blogy, syrové psaní    |
-| nettech.cz     | 10 článků (2015-2021)                      | technický návod, malá firma      |
+| Zdroj          | Co odtud                                   | Čím se liší                   |
+|----------------|--------------------------------------------|-------------------------------|
+| blog.nette.org | 36 článků (2012-2022), 6 autorů            | profesionální blog s redakcí  |
+| blog.root.cz   | 27 článků + diskuse (2020-2021), 10 autorů | komunita, syrové psaní        |
+| nettech.cz     | 10 článků (2015-2021)                      | malá firma, návody bez redakce|
 
-Nástroje ve složce `nastroje/` navíc stavějí na veřejných datech: VALLEX
-4.5 (valenční slovník sloves, ÚFAL UK, CC BY-NC-SA) a české Wikipedii
-(frekvence spojení, CC BY-SA).
+**Úřední styl** - čtyři korpusy, 68 dokumentů, ~180 tisíc slov. Rozbor
+v `analyza/destilace-uredni.md`:
+
+| Zdroj                          | Co odtud                                  | Čím se liší                    |
+|--------------------------------|-------------------------------------------|--------------------------------|
+| sbirka.nssoud.cz               | 17 rozhodnutí (2005-2021), 9 ročníků       | vrchol žánru, různé senáty     |
+| nalus.usoud.cz                 | 8 nálezů (2009-2015), včetně disentu       | ústavní argumentace, já-pozice |
+| weby úřadů (106/1999)          | 37 odpovědí od 16 institucí (2012-2021)    | běžný provoz, kolísavá kvalita |
+| weby ministerstev              | 6 metodických pokynů od 6 resortů (2009-2018) | výklad úřadu pro úřady      |
+
+Rozptyl kvality je v takto rozličném výběru textů záměrný: vedle precizního textu NSS stojí
+odpověď úřadu městské části. Co se najde v obou, je vlastnost stylu; co
+jen u slabších pisatelů, je kancelářský slang - a ten je v rozboru uveden jako
+negativní vzor, doložený uvnitř stylu samotného.
+
+Datum vydání je u úředních textů ověřitelné přímo v dokumentu (číslo
+jednací, datum rozhodnutí), takže hranice před listopadem 2022 tu drží
+spolehlivěji než u blogů. Část dokumentů, které úřady mezitím z webu
+stáhly, pochází z Wayback Machine.
+
+Stažené texty se do repa necommitují, `data/` je v `.gitignore` - z rozborů
+v `analyza/` je u každého vzorce vidět zdroj i citace. Nástroje ve složce
+`nastroje/` navíc stavějí na veřejných datech: VALLEX 4.5 (valenční
+slovník sloves, ÚFAL UK, CC BY-NC-SA) a české Wikipedii (frekvence
+spojení, CC BY-SA).
 
 ## Jak to celé funguje
 
@@ -94,67 +117,84 @@ všechny tři, tím pádem u AI nefunguje. Navíc má silné sklony k doslovným
 z angličtiny což vede k ještě horším výsledkům.
 
 ```
-SKILL.md         obecná pravidla, načtou se vždy
-technicky.md     technický žánr, postaveno na reálných textech
-vicefazove.md    draft → korektura bez záměru → přepis
-analyza/         rozbory korpusů, ze kterých pravidla vznikla
-nastroje/        ověřování vazeb a spojení v datech
-priklady/        stejná zadání se skillem a bez něj
+.claude-plugin/          manifest pluginu a marketplace
+skills/pis-cesky/
+  SKILL.md               obecná pravidla, načtou se vždy
+  technicky.md           technický styl, postaveno na reálných textech
+  uredni.md              úřední styl, postaveno na reálných textech
+  vicefazove.md          draft → korektura bez záměru → přepis
+skills/technicky/        zkratka /pis-cesky:technicky
+skills/uredne/           zkratka /pis-cesky:uredne
+analyza/                 rozbory korpusů, ze kterých pravidla vznikla
+nastroje/                ověřování vazeb a spojení v datech
+priklady/                stejná zadání se skillem a bez něj
 ```
 
 Soubory se načítají, až když jsou potřeba - kořenový SKILL.md řekne, který
-otevřít. Žánrový soubor má zatím jen technický text; osobní, marketingový
-a úřední svůj teprve dostanou a do té doby jedou na obecných pravidlech.
+otevřít. Skill má zatím technický a úřední styl; osobní
+a marketingový svůj teprve dostanou a do té doby jedou na obecných
+pravidlech.
 
 Protože skill není detektor, ale předpis, na doplnění dalšího žánru nepotřebuješ
 dvojici AI text vs. lidský text. Stačí dobré lidské psaní v tom žánru.
 
 ## Instalace
 
-```bash
-git clone https://github.com/rajtik76/pis-cesky.git ~/.claude/skills/pis-cesky
+Je to plugin pro Claude Code:
+
 ```
+/plugin marketplace add rajtik76/pis-cesky
+/plugin install pis-cesky@pis-cesky
+```
+
+Volitelně si stáhni jazyková data pro ověřování vazeb a spojení
+(VALLEX a n-gramy z Wikipedie, viz Zdroje dat):
+
 ```bash
 bash nastroje/stahni-data.sh
 ```
 
-Hlášku o aktivaci skillu si vypisuje sám skill, takže záleží na tom, jestli ho
-model poslechne. Kdo chce mít jistotu, přidá si do `~/.claude/settings.json`
-hook, který tuto hlášku vypíše sám od sebe a jen u tohohle skillu:
+Kdo si repo klonuje ručně, může ho stále dát rovnou do adresáře skillů -
+`~/.claude/skills/pis-cesky` - a Claude Code ho podle manifestu načte jako
+plugin sám, bez registrace marketplace:
 
-```json
-{
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Skill",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "jq -e '.tool_input.skill == \"pis-cesky\"' >/dev/null 2>&1 && jq -nc '{systemMessage:\"🇨🇿 Píšu česky (skill aktivován)\"}' || true"
-          }
-        ]
-      }
-    ]
-  }
-}
+```bash
+git clone https://github.com/rajtik76/pis-cesky.git ~/.claude/skills/pis-cesky
 ```
 
-Máš-li v `settings.json` hooky už zavedené, přidej ten blok do pole
-`PreToolUse` vedle nich, ať si je nepřepíšeš. Aby se změna projevila, otevři
-jednou `/hooks` nebo restartuj sezení. Potřebuje `jq`.
+Na vývoj a zkoušení bez instalace je `claude --plugin-dir ./pis-cesky`;
+po úpravách stačí `/reload-plugins`.
 
 ## Jak skill používat
 
-Že se skill zapojil, poznáš podle prvního řádku odpovědi:
+Že se skill zapojil, poznáš podle prvního řádku odpovědi - a zároveň z něj
+vyčteš, podle kterého stylu text vzniká:
 
 ```
-🇨🇿 Píšu česky (skill aktivován)
+🇨🇿 Píšu česky (styl: technický)
+🇨🇿 Píšu česky (styl: úřední)
+🇨🇿 Píšu česky (styl: obecný)
 ```
 
 Skill se aktivuje sám, když píšeš delší český text.
 O tom rozhoduje popis ve frontmatter. Když se na to spolehnout nechceš,
-vynutíš ho příkazem `/pis-cesky`.
+vynutíš ho příkazem `/pis-cesky:pis-cesky` a styl si necháš určit skillu.
+
+Styl vynutíš dvěma způsoby. Buď zkratkou:
+
+```
+/pis-cesky:uredne napiš odvolání proti platebnímu výměru
+/pis-cesky:technicky popiš, jak zapnout OPcache
+```
+
+nebo argumentem hlavního příkazu (`/pis-cesky:pis-cesky uredne ...`),
+případně prostou větou ("piš to úředně"). Na tvaru argumentu nezáleží,
+projde `uredne`, `úředně` i `uredni`, u technického stylu `technicky`
+i `tech`.
+
+Zkratky nekopírují pravidla, jen přeskočí určování žánru. Hodí se, když
+zadání samo o sobě žánr neprozradí - třeba u úředního dopisu
+o technické věci.
 
 U textu, který někdo uvidí - článek, dokumentace, e-mail ven z firmy - se
 skill ještě před psaním zeptá, jestli má pustit vícefázový režim: draft
@@ -258,9 +298,14 @@ jinou kostru dřív, než napíše první větu. Pak teprve píše.
 
 ## Stav
 
-Rozpracované: obecná pravidla, technický žánr a vícefázový režim.
-Osobní text čeká na rozbor vzorků, marketing na vzorky samotné,
-formální rejstřík na vlastní pravidla.
+Rozpracované: obecná pravidla, technický styl, úřední styl a vícefázový
+režim. Osobní text čeká na rozbor vzorků, marketing na vzorky samotné.
+
+U úředního stylu vím o dvou mezerách. Korpus stojí na textech, které píší
+úřady - žádost, odvolání ani stížnost z druhé strany v něm nejsou jako
+samostatné dokumenty, jen citované uvnitř odpovědí (zato početně).
+A metodika GFŘ je v korpusu oříznutá na 12 tisíc slov, takže z ní stavba
+delšího dokumentu vyčtená není.
 
 Pravidla ve skillu vznikají z chyb, které při psaní nachytám a ručně opravím.
 Většina z nich patří do jedné rodiny: přeložím obsah slova, ale nepřenesu,

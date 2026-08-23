@@ -63,4 +63,6 @@ Sada se skillem se stejně tak ukládala do `/priklady/se-skillem`.
 U sady se skillem směla session číst soubory skillu (`SKILL.md`,
 `technicky.md`, `vicefazove.md`, `slovnik.md` (od té doby zrušený),
 `nastroje/`, `analyza/`) -
-to je celý rozdíl mezi oběma běhy.
+to je celý rozdíl mezi oběma běhy. Všechna tři zadání jsou technická,
+takže se úřední styl neuplatnil; `uredni.md` v době pokusu ještě
+neexistoval.
