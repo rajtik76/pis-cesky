@@ -20,7 +20,8 @@ def main():
     if len(sys.argv) < 2:
         sys.exit(__doc__)
     if not DB.exists():
-        sys.exit(f"Chybí {DB} - postav ji podle nastroje/stahni-data.sh")
+        script = Path(__file__).resolve().parent / "stahni-data.sh"
+        sys.exit(f"Chybí {DB} - postav ji příkazem: bash {script}")
 
     con = sqlite3.connect(DB)
 

@@ -128,17 +128,27 @@ Korektor kostry dostane jiné zadání - jazyk neřeší vůbec:
 > vypadá v jednotlivých textech. Shodu hlas i tehdy, když je každý text
 > sám o sobě v pořádku - vada je v tom, že si jsou podobné.
 
-Jazykový korektor má k dispozici lokální nástroje (pokud existuje data/ -
-staví se skriptem nastroje/stahni-data.sh). Korektor kostry je
+Jazykový korektor má k dispozici lokální nástroje. Korektor kostry je
 nepotřebuje, ten pracuje jen se stavbou:
 
-- `python3 nastroje/vazby.py <sloveso>` - valenční rámce z VALLEX: co si
-  sloveso žádá (pády, předložky, spojky) a jaký má vid. Použít u každého
-  slovesa, u jehož vazby si není jistý.
-- `python3 nastroje/spojeni.py "<fráze>"` - frekvence spojení (1-3 slova)
-  v datech z české Wikipedie. Verdikt "slova běžná, spojení vzácné" značí
-  podezřelou kolokaci. Pozor na registr: hovorová a vývojářská spojení
-  mají nízký výskyt právem - nástroj říká "prověř", ne "špatně".
+- `python3 ${CLAUDE_PLUGIN_ROOT}/nastroje/vazby.py <sloveso>` - valenční
+  rámce z VALLEX: co si sloveso žádá (pády, předložky, spojky) a jaký má
+  vid. Použít u každého slovesa, u jehož vazby si není jistý.
+- `python3 ${CLAUDE_PLUGIN_ROOT}/nastroje/spojeni.py "<fráze>"` -
+  frekvence spojení (1-3 slova) v datech z české Wikipedie. Verdikt
+  "slova běžná, spojení vzácné" značí podezřelou kolokaci. Pozor na
+  registr: hovorová a vývojářská spojení mají nízký výskyt právem -
+  nástroj říká "prověř", ne "špatně".
+
+Cestu piš vždy přes `${CLAUDE_PLUGIN_ROOT}`. Relativní `nastroje/...` míří
+do adresáře, kde uživatel zrovna pracuje, ne do pluginu, takže selže.
+
+Data se nestahují spolu s pluginem, staví se lokálně skriptem
+`bash ${CLAUDE_PLUGIN_ROOT}/nastroje/stahni-data.sh` (asi 20 MB, pár
+minut). Když skript ohlásí, že soubor chybí, nabídni uživateli, že je
+postavíš, a mezitím pokračuj bez nástrojů - korekturu kvůli tomu
+nezastavuj. Když si uživatel řekne o postavení dat sám, spusť ten příkaz
+rovnou.
 
 Dotazy dávkuj. Oba skripty berou víc argumentů najednou
 (`spojeni.py "první fráze" "druhá fráze" "třetí"`, `vazby.py sloveso1

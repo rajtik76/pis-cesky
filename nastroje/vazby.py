@@ -42,7 +42,8 @@ def main():
     if len(sys.argv) < 2:
         sys.exit(__doc__)
     if not DATA.exists():
-        sys.exit(f"Chybí {DATA} - spusť nastroje/stahni-data.sh")
+        script = Path(__file__).resolve().parent / "stahni-data.sh"
+        sys.exit(f"Chybí {DATA} - spusť: bash {script}")
 
     wanted = set(sys.argv[1:])
     root = ET.parse(DATA).getroot()

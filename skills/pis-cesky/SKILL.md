@@ -313,6 +313,20 @@ národní korpus (kontext.korpus.cz) - nízký výskyt = prověř, jestli sis
 spojení nevymyslel. Tohle jsou kontroly, ne dekorace: "na čem to skříplo" by korpus
 shodil dřív, než by ho musel opravovat člověk.
 
+Obojí jde ověřit i lokálně, bez připojení:
+
+- `python3 ${CLAUDE_PLUGIN_ROOT}/nastroje/vazby.py <sloveso>` - valenční
+  rámce z VALLEX (co si sloveso žádá za pády a předložky, jaký má vid)
+- `python3 ${CLAUDE_PLUGIN_ROOT}/nastroje/spojeni.py "<fráze>"` -
+  frekvence spojení v datech z české Wikipedie
+
+Cestu piš vždy přes `${CLAUDE_PLUGIN_ROOT}`; relativní `nastroje/...`
+míří do adresáře, kde uživatel pracuje, ne do pluginu. Data se
+s pluginem nestahují - staví je `bash
+${CLAUDE_PLUGIN_ROOT}/nastroje/stahni-data.sh` (asi 20 MB). Když
+chybí, skripty to samy oznámí; nabídni uživateli, že je postavíš,
+a psát pokračuj i bez nich.
+
 ## Co dělat před odevzdáním
 
 Přečti si text nahlas, jako by ho psal někdo jiný. Hledáš místo, kde věta

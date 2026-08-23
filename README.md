@@ -147,12 +147,18 @@ Je to plugin pro Claude Code:
 /plugin install pis-cesky@pis-cesky
 ```
 
-Volitelně si stáhni jazyková data pro ověřování vazeb a spojení
-(VALLEX a n-gramy z Wikipedie, viz Zdroje dat):
+Volitelně si postav jazyková data pro ověřování vazeb a spojení (VALLEX
+a n-gramy z Wikipedie, viz Zdroje dat). Do repa se necommitují kvůli
+licenci a velikosti, takže je plugin v sobě nemá - stáhnou se až na lokálu.
+Stačí si o to říct:
 
-```bash
-bash nastroje/stahni-data.sh
 ```
+postav jazyková data pro pis-cesky
+```
+
+Skill ví, kde je nainstalovaný, a skript spustí sám. Data zabírají
+zhruba 20 MB a po aktualizaci pluginu se stavějí znovu. Bez nich skill
+funguje dál, ale s tím, že korektor nemůže ověřovat vazby a kolokace v datech.
 
 Kdo si repo klonuje ručně, může ho stále dát rovnou do adresáře skillů -
 `~/.claude/skills/pis-cesky` - a Claude Code ho podle manifestu načte jako
@@ -227,12 +233,15 @@ předem vypíše osu, první větu, konec a autorskou pózu, porovná je a začn
 Ukázky obou sad najdeš v adresáři `priklady/`.
 
 Korektura se navíc může opřít o lokální jazyková data - `nastroje/` umí
-stáhnout VALLEX (valenční rámce 4 700 českých sloves, CC BY-NC-SA) a
-postavit frekvenční databázi spojení z české Wikipedie:
+stáhnout VALLEX (valenční rámce 4 700 českých sloves, CC BY-NC-SA)
+a postavit frekvenční databázi spojení z české Wikipedie. Jak si je
+postavit, je v sekci Instalace.
 
-Pak jde vazba slovesa ověřit příkazem `python3 nastroje/vazby.py přiznat`
-a existence spojení příkazem `python3 nastroje/spojeni.py "hraje klíčovou
-roli"`. Data se do repa necommitují, každý si je staví lokálně.
+Vazbu slovesa pak ověříš příkazem `vazby.py přiznat` a existenci spojení
+příkazem `spojeni.py "hraje klíčovou roli"`. Skill si je volá plnou
+cestou přes `${CLAUDE_PLUGIN_ROOT}`, protože relativní cesta by mířila do
+adresáře, kde zrovna pracuješ, ne do pluginu. Skripty si data hledají
+podle svého vlastního umístění, takže je můžeš spustit odkudkoli.
 
 ## Příklady promptů
 
