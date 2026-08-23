@@ -5,7 +5,7 @@ redakce, profesionální blog frameworku s šesti autory a komunitní blogy
 deseti amatérů až poloprofesionálů včetně diskusí pod články. Patnáct let
 rozpětí, různí lidé, různá úroveň psaní. Co se najde ve všech, není zvláštnost
 jednoho autora, ale vlastnost českého technického psaní. Tohle je surovina
-pro podskill `technicky/`.
+pro stylový soubor `technicky.md`.
 
 ## Patnáct vzorců a jejich doklady
 
@@ -127,7 +127,7 @@ přiznání, kdo mluví a co z toho má.
 
 ## Nuance k pravidlu o konci
 
-Jediná rekapitulace v 73 textech všech tří korpusů: Tauchmanův "Závěr
+Jediná rekapitulace v 74 textech všech tří korpusů: Tauchmanův "Závěr
 projektu" na konci dvanáctidílného seriálu. Není informační - je to bilance s hodnocením,
 sebekritikou vlastních článků a poděkováním manželce. Závěr smí existovat
 na konci seriálu jako ohlédnutí; nikdy jako opakování řečeného.

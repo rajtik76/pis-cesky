@@ -58,8 +58,8 @@ konverzace, soubor nezakládej - korektorovi ho předáš rovnou v promptu.
 ## 2. Korektura v čistém kontextu
 
 Spusť subagenta s čistým kontextem (Agent tool). Zásadní pravidlo:
-korektor NESMÍ dostat zadání, konverzaci ani tvůj záměr - jen text,
-slovník a kontrolní zadání. Právě proto uvidí, co ty nevidíš: on čte
+korektor NESMÍ dostat zadání, konverzaci ani tvůj záměr - jen text
+a kontrolní zadání. Právě proto uvidí, co ty nevidíš: on čte
 text tak, jak ho bude číst čtenář.
 
 Korektura je z celého postupu nejnáročnější krok, tak na ní nešetři.
@@ -114,7 +114,6 @@ Prompt pro korektora (doplň text draftu):
 > to tak v oboru?); příčestí v přívlastku a číslo párových znaků;
 > střídání synonym pro tutéž akci; navazovací částice mezi větami;
 > tvrzení, která vypadají jako vata nebo nejsou kryta obsahem textu.
-> Přiložený slovník chyb ber jako přehled už známých vzorců.
 >
 > Nepřepisuj celý text. Vrať jen seznam nálezů. Když je věta v pořádku,
 > nekomentuj ji.
@@ -144,8 +143,8 @@ Cestu piš vždy přes `${CLAUDE_PLUGIN_ROOT}`. Relativní `nastroje/...` míř�
 do adresáře, kde uživatel zrovna pracuje, ne do pluginu, takže selže.
 
 Data se nestahují spolu s pluginem, staví se lokálně skriptem
-`bash ${CLAUDE_PLUGIN_ROOT}/nastroje/stahni-data.sh` (asi 20 MB, pár
-minut). Když skript ohlásí, že soubor chybí, nabídni uživateli, že je
+`bash ${CLAUDE_PLUGIN_ROOT}/nastroje/stahni-data.sh` (asi 250 MB na
+disku, desítky minut). Když skript ohlásí, že soubor chybí, nabídni uživateli, že je
 postavíš, a mezitím pokračuj bez nástrojů - korekturu kvůli tomu
 nezastavuj. Když si uživatel řekne o postavení dat sám, spusť ten příkaz
 rovnou.

@@ -10,8 +10,8 @@ ne že se dělá právě takhle. Když převezmeš figuru z příkladu, vyrobí�
 Doplněk kořenového `SKILL.md` - ten platí pořád, tady jsou navíc
 pravidla pro technický žánr.
 
-Odvozeno ze tří korpusů českých textů psaných lidmi v letech 2005-2022:
-blog.nette.org (36 článků, 6 autorů), blog.root.cz (27 článků + diskuse,
+Odvozeno ze tří zdrojů českých textů psaných lidmi v letech 2012-2022:
+blog.nette.org (36 článků, 6 autorů), blog.root.cz (28 článků + diskuse,
 10 autorů), nettech.cz (10 článků). Podrobnosti v analyza/. Platí pro
 technické psaní; úřední texty mají vlastní soubor `uredni.md`, osobní
 esej a marketing zatím ne.
@@ -109,7 +109,7 @@ Krátká metanavigace je v pořádku: "Pojďme se na ně podívat" píší i
 nejlepší čeští autoři - jednou, funkčně. Slop z ní dělá až šablona: stejná
 formule na stejném místě každého textu.
 
-Nekonči shrnutím. V 73 textech korpusu není jediné. Text končí posledním
+Nekonči shrnutím. V 74 textech korpusu není jediné. Text končí posledním
 krokem, kusem kódu, otázkou do diskuse ("Jak se na novou verzi těšíte?"),
 odkazem, dopřednou referencí ("Třetí díl bude jen taková třešnička.").
 Nadpis "Závěrem" smí existovat, ale pod ním je srovnání alternativ nebo

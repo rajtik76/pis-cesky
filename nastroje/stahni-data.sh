@@ -25,7 +25,21 @@ echo "VALLEX ok: $(du -h data/vallex-verbs-4.5.xml | cut -f1)"
 MAX_MB="${1:-1500}"
 if [ ! -s data/ngramy.sqlite ]; then
   echo "Stavím n-gramovou DB z české Wikipedie (--max-mb $MAX_MB, potrvá minuty až desítky minut)..."
+  # postav-ngramy.py stops reading once --max-mb is reached, which sends
+  # SIGPIPE up the pipeline: curl and bzcat then exit 141 and pipefail
+  # would report a finished build as a failure. Judge the build by the
+  # exit status of the writer at the end of the pipe, not by the feeders.
+  set +e +o pipefail
   curl -sL "https://dumps.wikimedia.org/cswiki/latest/cswiki-latest-pages-articles.xml.bz2" \
     | bzcat | python3 nastroje/postav-ngramy.py --max-mb "$MAX_MB"
+  ngram_status=${PIPESTATUS[2]}
+  set -e -o pipefail
+
+  if [ "$ngram_status" -ne 0 ]; then
+    echo "Stavba n-gramové DB selhala (návratový kód $ngram_status)" >&2
+    exit 1
+  fi
 fi
+[ -s data/ngramy.sqlite ] || { echo "N-gramová DB se nepostavila" >&2; exit 1; }
+echo "N-gramy ok: $(du -h data/ngramy.sqlite | cut -f1)"
 echo "hotovo"

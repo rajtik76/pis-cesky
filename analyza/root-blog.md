@@ -1,4 +1,4 @@
-# Analýza: blog.root.cz (2020-2021, 27 článků + diskuse, ~45 000 slov)
+# Analýza: blog.root.cz (2020-2021, 28 článků + diskuse, ~45 000 slov)
 
 Komunitní blogy na root.cz, 10 autorů, žádná redakce. Proti nette korpusu
 (profesionální blog s dominantním hlasem) je tohle syrové, amatérské až
@@ -120,7 +120,7 @@ aby tvrzení stálo na faktech, ne na autoritě.
 ## Nuance: "Závěr" v seriálu
 
 Tauchmanova kapitola 12 se jmenuje "Závěr projektu" a je to jediná
-rekapitulace v celém korpusu (46+27 textů). Jenže není informační - je to
+rekapitulace v celém korpusu (36+28 textů). Jenže není informační - je to
 bilance: co se povedlo, co ne, sebekritika vlastních článků ("téma her jsem
 asi nepodchytil úplně zábavně, soudě dle mírných reakcí"), poděkování
 manželce a plán dalších nákupů. Závěr smí existovat na konci seriálu jako

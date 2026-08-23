@@ -43,7 +43,7 @@ z intuice, ale ze stejného postupu jako ty dva hotové:
 
 1. **Nasbírej vzorek.** Aspoň tři na sobě nezávislé zdroje daného stylu,
    psané lidmi, od různých autorů a institucí - u technického to bylo
-   ~100 tisíc slov ze tří blogů, u úředního ~180 tisíc slov ze čtyř
+   ~79 tisíc slov ze tří blogů, u úředního ~180 tisíc slov ze čtyř
    zdrojů. Přednost mají texty publikované před listopadem 2022 -
    z pozdějších nejde spolehlivě poznat, jestli je psal člověk nebo
    model. Rozmanitost zdrojů je důležitější než objem: co se najde ve

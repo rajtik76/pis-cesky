@@ -75,12 +75,12 @@ textů). A čeština? Nic! České repozitáře sice existují, ale opisují jed
 Pochází z českých textů psaných lidmi a publikovaných před listopadem 2022, tedy
 předtím, než se generovaný text dostal do běžného provozu.
 
-**Technický styl** - tři zdroje, ~100 tisíc slov. Rozbory v `analyza/`:
+**Technický styl** - tři zdroje, ~79 tisíc slov. Rozbory v `analyza/`:
 
 | Zdroj          | Co odtud                                   | Čím se liší                   |
 |----------------|--------------------------------------------|-------------------------------|
 | blog.nette.org | 36 článků (2012-2022), 6 autorů            | profesionální blog s redakcí  |
-| blog.root.cz   | 27 článků + diskuse (2020-2021), 10 autorů | komunita, syrové psaní        |
+| blog.root.cz   | 28 článků + diskuse (2020-2021), 10 autorů | komunita, syrové psaní        |
 | nettech.cz     | 10 článků (2015-2021)                      | malá firma, návody bez redakce|
 
 **Úřední styl** - čtyři zdroje, 68 dokumentů, ~180 tisíc slov. Rozbor
@@ -158,7 +158,7 @@ Na to je vlastní příkaz:
 ```
 
 Ten ví, kam plugin data ukládá, a skript spustí sám. Data zabírají
-zhruba 20 MB a po aktualizaci pluginu se stavějí znovu. Bez nich skill
+na disku zhruba 250 MB a po aktualizaci pluginu se stavějí znovu. Bez nich skill
 funguje dál, ale s tím, že korektor nemůže ověřovat vazby a kolokace v datech.
 
 Kdo si repo klonuje ručně, může ho stále dát rovnou do adresáře skillů -
@@ -234,7 +234,7 @@ předem vypíše osu, první větu, konec a autorskou pózu, porovná je a začn
 Ukázky obou sad najdeš v adresáři `priklady/`.
 
 Korektura se navíc může opřít o lokální jazyková data - `nastroje/` umí
-stáhnout VALLEX (valenční rámce 4 700 českých sloves, CC BY-NC-SA)
+stáhnout VALLEX (valenční rámce 2 772 českých sloves, CC BY-NC-SA)
 a postavit frekvenční databázi spojení z české Wikipedie. Jak si je
 postavit, je v sekci Instalace.
 

@@ -20,8 +20,10 @@ náhodou leží klon repa s vlastními daty. Skripty `vazby.py` a
 
 Co k tomu vědět a říct uživateli dopředu:
 
-- Stahuje se zhruba 20 MB a stavba n-gramů z Wikipedie trvá desítky
-  minut. Pusť to na pozadí, ne v popředí.
+- VALLEX je stažení na 13 MB. N-gramy se staví z dumpu české
+  Wikipedie: proteče přes gigabajt dat a trvá to desítky minut.
+  Výsledek zabere na disku asi 250 MB (n-gramy 240 MB, VALLEX 13 MB). Pusť to na pozadí, ne
+  v popředí.
 - Když už data existují, skript je znovu nestahuje. Není třeba to
   kontrolovat předem.
 - Data leží v adresáři konkrétní verze pluginu, takže po aktualizaci na

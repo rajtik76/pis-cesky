@@ -53,7 +53,7 @@ odpovídající soubor:
 - `uredni.md` - argument `uredne`, `úředně`, `uredni`, `urad`
 
 Ber to volně: rozhoduje význam, ne přesný tvar. Argument bývá zamíchaný
-do zadání (`/pis-cesky uredne napiš odvolání`), takže styl z něj vyzobni
+do zadání (`/pis-cesky:pis-cesky uredne napiš odvolání`), takže styl z něj vyzobni
 a zbytek ber jako zadání textu. Totéž platí, když si o styl řekne
 uživatel větou ("piš to úředně"). Když argument žádný styl nepojmenovává,
 urči žánr sám podle tabulky výše.
@@ -64,7 +64,7 @@ Vzniká text, který někdo uvidí - článek, dokumentace, e-mail ven z firmy,
 popis produktu? Pak se zeptej dřív, než napíšeš první větu:
 
 > Mám na to pustit vícefázový režim podle `vicefazove.md` (draft →
-> korektura nezávislým agentem → přepis)? Stojí to zhruba 50 tisíc tokenů
+> korektura nezávislým agentem → přepis)? Stojí to zhruba 40 až 50 tisíc tokenů
 > na text navíc, ale chytá chyby, které při vlastním čtení neuvidím -
 > věcné omyly i to, že si texty vyjdou na stejnou kostru. Bez něj dostaneš
 > jednoprůchodový draft.
@@ -323,7 +323,8 @@ Obojí jde ověřit i lokálně, bez připojení:
 Cestu piš vždy přes `${CLAUDE_PLUGIN_ROOT}`; relativní `nastroje/...`
 míří do adresáře, kde uživatel pracuje, ne do pluginu. Data se
 s pluginem nestahují - staví je `bash
-${CLAUDE_PLUGIN_ROOT}/nastroje/stahni-data.sh` (asi 20 MB). Když
+${CLAUDE_PLUGIN_ROOT}/nastroje/stahni-data.sh` (asi 250 MB na disku,
+desítky minut). Když
 chybí, skripty to samy oznámí; nabídni uživateli, že je postavíš,
 a psát pokračuj i bez nich.
 
