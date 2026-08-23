@@ -125,6 +125,7 @@ skills/pis-cesky/
   vicefazove.md          draft → korektura bez záměru → přepis
 skills/technicky/        zkratka /pis-cesky:technicky
 skills/uredne/           zkratka /pis-cesky:uredne
+skills/data/             /pis-cesky:data - postaví jazyková data
 analyza/                 rozbory zdrojů, ze kterých pravidla vznikla
 nastroje/                ověřování vazeb a spojení v datech
 priklady/                stejná zadání se skillem a bez něj
@@ -150,13 +151,13 @@ Je to plugin pro Claude Code:
 Volitelně si postav jazyková data pro ověřování vazeb a spojení (VALLEX
 a n-gramy z Wikipedie, viz Zdroje dat). Do repa se necommitují kvůli
 licenci a velikosti, takže je plugin v sobě nemá - stáhnou se až na lokálu.
-Stačí si o to říct:
+Na to je vlastní příkaz:
 
 ```
-postav jazyková data pro pis-cesky
+/pis-cesky:data
 ```
 
-Skill ví, kde je nainstalovaný, a skript spustí sám. Data zabírají
+Ten ví, kam plugin data ukládá, a skript spustí sám. Data zabírají
 zhruba 20 MB a po aktualizaci pluginu se stavějí znovu. Bez nich skill
 funguje dál, ale s tím, že korektor nemůže ověřovat vazby a kolokace v datech.
 
