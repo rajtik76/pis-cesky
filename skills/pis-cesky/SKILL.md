@@ -64,7 +64,7 @@ Vzniká text, který někdo uvidí - článek, dokumentace, e-mail ven z firmy,
 popis produktu? Pak se zeptej dřív, než napíšeš první větu:
 
 > Mám na to pustit vícefázový režim podle `vicefazove.md` (draft →
-> korektura nezávislým agentem → přepis)? Stojí to zhruba 40 až 50 tisíc tokenů
+> korektura nezávislým agentem → přepis)? Stojí to zhruba 30 tisíc tokenů
 > na text navíc, ale chytá chyby, které při vlastním čtení neuvidím -
 > věcné omyly i to, že si texty vyjdou na stejnou kostru. Bez něj dostaneš
 > jednoprůchodový draft.

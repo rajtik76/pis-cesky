@@ -57,32 +57,53 @@ konverzace, soubor nezakládej - korektorovi ho předáš rovnou v promptu.
 
 ## 2. Korektura v čistém kontextu
 
-Spusť subagenta s čistým kontextem (Agent tool). Zásadní pravidlo:
-korektor NESMÍ dostat zadání, konverzaci ani tvůj záměr - jen text
-a kontrolní zadání. Právě proto uvidí, co ty nevidíš: on čte
-text tak, jak ho bude číst čtenář.
+Než korektora spustíš, projeď text skriptem
+`python3 ${CLAUDE_PLUGIN_ROOT}/nastroje/mechanika.py <soubor>` (text bez
+souboru mu pošli na stdin s argumentem `-`). Párové znaky, pomlčky,
+dvojité mezery a mezery u interpunkce chytí deterministicky za nula
+tokenů; jeho nálezy zapracuješ při přepisu a korektor už mechaniku
+neřeší.
+
+Spusť subagenta `pis-cesky:korektor` (Agent tool) - kontrolní zadání,
+nástroje i formát nálezů má v definici `agents/korektor.md` a nenese
+výbavu, kterou nepotřebuje. Zásadní pravidlo: korektor NESMÍ dostat
+zadání, konverzaci ani tvůj záměr - jen text. Právě proto uvidí, co ty
+nevidíš: on čte text tak, jak ho bude číst čtenář.
+
+Prompt skládej vždy stejně a jen ze dvou věcí:
+
+1. první řádek `Kořen pluginu: <absolutní cesta>` - podle něj korektor
+   najde nástroje, kdyby v jeho prostředí nebyla proměnná
+   `${CLAUDE_PLUGIN_ROOT}`
+2. text draftu (u textů uložených v souborech cesty k nim)
+
+Nic dalšího nepřidávej a formulace neměň. Stejná definice agenta
+a stejný začátek promptu napříč korektory znamenají, že se prefix uloží
+do cache - N paralelních korektorů ho platí jednou a běží rychleji.
 
 Korektura je z celého postupu nejnáročnější krok, tak na ní nešetři.
-Pouštěj ji na nejsilnějším modelu, který máš k dispozici, a s vysokým
-nastavením přemýšlení; rychlý ani malý model sem nepatří. Subagent dědí
-model hlavní session, takže když v ní běžíš na slabším modelu, předej
-korektorovi silnější explicitně parametrem `model`. Ověřit se to dá
-jednoduše - subagent má své ID v systémovém promptu a na přímý dotaz ho
-řekne. Draft je totiž jen generování podle pravidel, kdežto korektor musí
-rozlišit jemné vazby, ověřit fakta a obsloužit nástroje. Slabší model přitom neselže viditelně -
+Draft je jen generování podle pravidel, kdežto korektor musí rozlišit
+jemné vazby, ověřit fakta a obsloužit nástroje; rychlý ani malý model
+sem nepatří. Agent má proto v definici `model: opus` - když máš
+k dispozici silnější model, předej ho parametrem `model` - a přemýšlení
+nech na vysokém nastavení. Slabší model přitom neselže viditelně:
 nálezy vrátí, jen budou povrchní, a toho si na první pohled nevšimneš.
-Počítej zhruba s 40 až 50 tisíci tokeny na jeden text; běží jednou, takže
-se to vyplatí.
+Ověřit model jde jednoduše - subagent má své ID v systémovém promptu
+a na přímý dotaz ho řekne. Počítej zhruba s 30 tisíci tokeny na jeden
+text; korektura běží jednou, takže se to vyplatí.
 
-Jeden text = jeden korektor, jazykový. Korektora kostry nespouštěj, nemá
-co s čím porovnávat - byl by to vyhozený agent i tokeny.
+Jeden text = jeden korektor, jazykový - s jednou výjimkou: texty pod
+zhruba 300 slov slučuj po dvou až třech na jednoho korektora. Čistý
+kontext to neporušuje, korektor záměr pořád nezná, jen se režie agenta
+neplatí vícekrát. Korektora kostry nespouštěj, nemá co s čím porovnávat -
+byl by to vyhozený agent i tokeny.
 
-U dvou a víc textů pusť N jazykových korektorů paralelně, každého na jeden
-text.
+U dvou a víc delších textů pusť N jazykových korektorů paralelně,
+každého na jeden text.
 
 Korektora kostry samostatně nepouštěj. Kostru sis rozvrhl v kroku 1
 a porovnání plánů je plánování, ne kontrola - stojí pár set tokenů proti
-padesáti tisícům za agenta. Zvláštního korektora na kostru zavolej jen
+desítkám tisíc za agenta. Zvláštního korektora na kostru zavolej jen
 tehdy, když si po dopsání nejsi jistý, jestli texty dopadly podle plánu,
 nebo když si o to uživatel řekne. Pak dostane všechny texty a hledá
 výhradně shodu stavby, jazyk neřeší.
@@ -99,26 +120,8 @@ hlavní session může běžet na slabším modelu než subagenti a rozhodoval b
 pak nejslabší článek řetězu. Detekce proto patří subagentovi bez záměru,
 rozhodnutí, co s nálezem, zůstává hlavní session.
 
-Prompt pro korektora (doplň text draftu):
-
-> Jsi korektor českého textu. Dostáváš text bez kontextu - nevíš, kdo ho
-> psal ani proč, a přesně tak ho čti. Projdi ho větu po větě a hlas
-> nálezy ve formátu: citace místa → co je špatně → mechanismus → návrh
-> opravy.
->
-> Kontroluj: věty, kterým bez znalosti záměru nerozumíš nebo jdou číst
-> dvěma způsoby (nález nejvyšší priority); zájmena a odkazy - k čemu se
-> reálně vážou; kalky z angličtiny a vazby sloves (valence, modalita,
-> rámec, existenční stavba); slovosled - nová informace patří na konec
-> věty; kolokace (čím se věc v češtině měří) a doménová slovesa (říká se
-> to tak v oboru?); příčestí v přívlastku a číslo párových znaků;
-> střídání synonym pro tutéž akci; navazovací částice mezi větami;
-> tvrzení, která vypadají jako vata nebo nejsou kryta obsahem textu.
->
-> Nepřepisuj celý text. Vrať jen seznam nálezů. Když je věta v pořádku,
-> nekomentuj ji.
-
-Korektor kostry dostane jiné zadání - jazyk neřeší vůbec:
+Korektor kostry vlastní definici agenta nemá - běží zřídka - a zadání
+dostane v promptu; jazyk neřeší vůbec:
 
 > Dostáváš několik textů bez kontextu. Nezajímá tě jazyk ani fakta, jen
 > jedno: jestli jsou postavené na stejné kostře. Porovnej typ otvíráku,
@@ -127,20 +130,11 @@ Korektor kostry dostane jiné zadání - jazyk neřeší vůbec:
 > vypadá v jednotlivých textech. Shodu hlas i tehdy, když je každý text
 > sám o sobě v pořádku - vada je v tom, že si jsou podobné.
 
-Jazykový korektor má k dispozici lokální nástroje. Korektor kostry je
-nepotřebuje, ten pracuje jen se stavbou:
-
-- `python3 ${CLAUDE_PLUGIN_ROOT}/nastroje/vazby.py <sloveso>` - valenční
-  rámce z VALLEX: co si sloveso žádá (pády, předložky, spojky) a jaký má
-  vid. Použít u každého slovesa, u jehož vazby si není jistý.
-- `python3 ${CLAUDE_PLUGIN_ROOT}/nastroje/spojeni.py "<fráze>"` -
-  frekvence spojení (1-3 slova) v datech z české Wikipedie. Verdikt
-  "slova běžná, spojení vzácné" značí podezřelou kolokaci. Pozor na
-  registr: hovorová a vývojářská spojení mají nízký výskyt právem -
-  nástroj říká "prověř", ne "špatně".
-
-Cestu piš vždy přes `${CLAUDE_PLUGIN_ROOT}`. Relativní `nastroje/...` míří
-do adresáře, kde uživatel zrovna pracuje, ne do pluginu, takže selže.
+Nástroje na ověřování vazeb (`vazby.py`) a kolokací (`spojeni.py`),
+pravidla dávkování dotazů i strop tří volání na korekturu má jazykový
+korektor v definici agenta - do promptu je nepiš. Korektor kostry
+nástroje nepotřebuje, ten pracuje jen se stavbou. Hlavní session jen
+ohlídá, že existují jazyková data.
 
 Data se nestahují spolu s pluginem, staví se lokálně skriptem
 `bash ${CLAUDE_PLUGIN_ROOT}/nastroje/stahni-data.sh` (asi 250 MB na
@@ -149,29 +143,14 @@ postavíš, a mezitím pokračuj bez nástrojů - korekturu kvůli tomu
 nezastavuj. Když si uživatel řekne o postavení dat sám, spusť ten příkaz
 rovnou.
 
-Dotazy dávkuj. Oba skripty berou víc argumentů najednou
-(`spojeni.py "první fráze" "druhá fráze" "třetí"`, `vazby.py sloveso1
-sloveso2`), takže deset podezřelých spojení se zeptá jedním voláním místo
-deseti. Každé volání nástroje má svou režii a ta se při desítkách dotazů
-sečte.
-
-Nulu neber jako verdikt, ale jako podnět k druhému dotazu. Zkus totéž
-sloveso v kolokaci, o které víš, že je správná: když "pohání vůz" vyjde
-0× a "motor pohání" 16×, sloveso v datech je a podezřelá je právě ta tvoje
-vazba. Když nula vyjde i u kontrolního spojení, data na tuhle oblast
-nestačí a rozhodnout musíš jinak - podle příručky, dokumentace oboru nebo
-vlastního úsudku.
-
-Do promptu jazykového korektora přidej cesty k nástrojům a pokyn je
-používat.
-
 Než začneš přepisovat, počkej, až se vrátí všichni korektoři.
 
 Kde Agent tool není (Codex, omezené prostředí), degraduj poctivě: zavři
 zadání, otevři soubor znovu a čti ho výhradně očima cizího čtenáře -
 u každé věty se ptej "co tahle věta říká někomu, kdo nezná můj záměr".
-Nástroje výše použij i v tomhle režimu. Je to slabší kontrola než čistý
-kontext a v předání to přiznej.
+Kontrolní seznam i nástroje si vezmi z `agents/korektor.md` a mechaniku
+pusť skriptem `mechanika.py` i v tomhle režimu. Je to slabší kontrola
+než čistý kontext a v předání to přiznej.
 
 Kostru v tomhle režimu neposuzuj od oka. Vypiš si z každého textu čtyři
 údaje - první věta, osa textu, poslední věta, autorská póza - do tabulky
@@ -211,6 +190,12 @@ přepsané texty a zadání zúžené na tři věci: (1) nové věcné chyby vzn
 přesunem údajů, (2) rozbité vazby a odkazy v přepsaných pasážích,
 (3) jestli se kostry po přepisu opravdu rozešly. Nálezy z prvního kola
 mu neposílej - má číst znovu bez zátěže.
+
+Druhé kolo pusť na témže agentovi `korektor`, ale s parametrem
+`model: sonnet` a běžným přemýšlením. Zúžené zadání je mechanická
+kontrola a nejsilnější model by tu byl vyhozený. Do promptu napiš, že
+jde o druhé kolo - agent pak svůj plný kontrolní seznam neřeší a drží
+se jen těch tří věcí.
 
 Víc než dvě kola nedělej. Když se kostry nerozejdou ani napodruhé,
 rozliš, o jakou shodu jde:
