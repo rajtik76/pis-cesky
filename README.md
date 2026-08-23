@@ -14,7 +14,7 @@ Samozřejmě jsem si vědom toho, že to není univerzální nástroj pro tvorbu
 českých textů. Je to jen můj aktuální pohled na to, jak současné AI modely generují české texty, 
 a pokus s tím něco udělat.
 Cílem nebylo vytvořit skill, aby AI psala jako člověk ale aby generovala texty, které budou
-pro člověka lépe čitelné a aby se odstranili ty doslovné překlady z AJ, které v češtině
+pro člověka lépe čitelné a aby se odstranily ty doslovné překlady z AJ, které v češtině
 zní strašně, např.:"Duck curve: profil dne, který slunce překreslilo", "proč cena v poledne padá, občas až do záporu" atd.
 
 ### Co skill je
@@ -81,6 +81,9 @@ Podrobně analyzované rozbory jsou v adresáři `analyza/`:
 | blog.nette.org | 36 článků (2012-2022), 6 autorů            | profesionální technický blog     |
 | blog.root.cz   | 27 článků + diskuse (2020-2021), 10 autorů | komunitní blogy, syrové psaní    |
 | nettech.cz     | 10 článků (2015-2021)                      | technický návod, malá firma      |
+
+Všech 73 článků pochází z jednoho okruhu - české PHP a linuxové komunity - takže
+korpus zachycuje styl téhle scény, ne českou technickou prózu obecně.
 
 Nástroje ve složce `nastroje/` navíc stavějí na veřejných datech: VALLEX
 4.5 (valenční slovník sloves, ÚFAL UK, CC BY-NC-SA) a české Wikipedii
@@ -181,9 +184,9 @@ jednu past - korektor běží na modelu hlavní session, takže když sám jede�
 na Haiku, dostaneš i korekturu z Haiku. Skill si v takovém případě má
 silnější model vyžádat explicitně.
 
-Aby texty psané v jedné dávce neměli stejný styl a tudíž nevypadali stejně, řeší se to
+Aby texty psané v jedné dávce neměly stejný styl a tudíž nevypadaly stejně, řeší se to
 plánováním před psaním, ne kontrolou po něm: skill si ke každému textu
-předem vypíše osu, prvni větu, konec a autorskou pózu, porovná je a začne s generováním.
+předem vypíše osu, první větu, konec a autorskou pózu, porovná je a začne s generováním.
 Ukázky obou sad najdeš v adresáři `priklady/`.
 
 Korektura se navíc může opřít o lokální jazyková data - `nastroje/` umí
