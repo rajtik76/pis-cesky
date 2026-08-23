@@ -1,4 +1,6 @@
-data/
-.claude/
-.idea/
-test/
+# Jazyková data se stahují lokálně, do repa nepatří (licence a velikost).
+# Lomítko na začátku je podstatné: bez něj by vzor bral i skills/data/.
+/data/
+/.claude/
+/.idea/
+/test/
