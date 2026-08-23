@@ -1,11 +1,11 @@
 # pis-cesky
 
 [![Release](https://img.shields.io/github/v/release/rajtik76/pis-cesky?label=release)](https://github.com/rajtik76/pis-cesky/releases)
-[![Claude Code](https://img.shields.io/badge/Claude_Code-skill-5A32FB)](https://github.com/rajtik76/pis-cesky)
+[![Claude Code](https://img.shields.io/badge/Claude_Code-plugin-5A32FB)](https://github.com/rajtik76/pis-cesky)
 [![Jazyk](https://img.shields.io/badge/jazyk-čeština-11457E)](README.md)
 [![Licence](https://img.shields.io/badge/licence-MIT-green)](LICENSE)
 
-Skill pro Claude Code, který mění způsob, jakým model generuje české texty. 
+Plugin pro Claude Code, který mění způsob, jakým model generuje české texty. 
 Ne tím, že by mu zakazoval jednotlivá slova nebo výrazy, ale tím, že mu určuje pozici, ze které text vzniká. 
 Můj názor je ten, že rozdíl mezi lidským a AI textem v češtině není ve slovníku, ale 
 v tom, kdo a jak obsah vypráví.
