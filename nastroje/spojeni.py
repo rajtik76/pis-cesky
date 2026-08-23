@@ -3,7 +3,8 @@
 
 Použití: spojeni.py "<fráze>" [další fráze...]
 
-Vyhledá přesné spojení (1-3 slova) v data/ngramy.sqlite a vypíše jeho
+Vyhledá přesné spojení (1-3 slova) v ngramy.sqlite (kde se databáze
+hledá, říká datadir.py) a vypíše jeho
 výskyt i výskyty jednotlivých slov - podle toho poznáš, jestli je
 spojení vzácné kvůli vzácným slovům, nebo proto, že se tak nemluví.
 Verdikt je vodítko, ne rozsudek: databáze stojí na Wikipedii, takže
@@ -13,7 +14,9 @@ import sqlite3
 import sys
 from pathlib import Path
 
-DB = Path(__file__).resolve().parent.parent / "data" / "ngramy.sqlite"
+from datadir import data_file
+
+DB = data_file("ngramy.sqlite")
 
 
 def main():

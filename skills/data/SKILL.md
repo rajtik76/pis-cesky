@@ -13,10 +13,13 @@ Spusť skript a počkej, až doběhne:
 bash ${CLAUDE_PLUGIN_ROOT}/nastroje/stahni-data.sh
 ```
 
-Cestu piš vždy přes `${CLAUDE_PLUGIN_ROOT}`. Data patří k nainstalovanému
-pluginu, ne do adresáře, ve kterém uživatel zrovna pracuje - i když tam
-náhodou leží klon repa s vlastními daty. Skripty `vazby.py` a
-`spojeni.py` je hledají vedle sebe, takže jinam je stavět nemá smysl.
+Cestu ke skriptu piš vždy přes `${CLAUDE_PLUGIN_ROOT}` - relativní cesta
+míří do adresáře, kde uživatel zrovna pracuje, a selže. Kam se data
+postaví, rozhoduje `nastroje/datadir.py`: proměnná `PIS_CESKY_DATA`,
+jinak sdílený adresář uživatele mimo instalaci pluginu (vypíšeš ho
+příkazem `python3 ${CLAUDE_PLUGIN_ROOT}/nastroje/datadir.py`). Skripty
+`vazby.py` a `spojeni.py` hledají tamtéž, navíc vidí i lokálně
+postavená data v klonu repa.
 
 Co k tomu vědět a říct uživateli dopředu:
 
@@ -26,8 +29,8 @@ Co k tomu vědět a říct uživateli dopředu:
   v popředí.
 - Když už data existují, skript je znovu nestahuje. Není třeba to
   kontrolovat předem.
-- Data leží v adresáři konkrétní verze pluginu, takže po aktualizaci na
-  novou verzi se stavějí znovu.
+- Data leží mimo instalaci pluginu, takže aktualizace pluginu je
+  nezahodí - stavějí se jen jednou.
 
 Až to doběhne, ověř, že obojí funguje:
 

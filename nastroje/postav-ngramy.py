@@ -6,7 +6,8 @@ Použití:
     | bzcat | python3 nastroje/postav-ngramy.py [--max-mb 1500]
 
 Čte rozbalené XML ze standardního vstupu, zhruba odstraní wiki značky,
-spočítá jednoslovné až tříslovné výskyty a uloží je do data/ngramy.sqlite
+spočítá jednoslovné až tříslovné výskyty a uloží je do ngramy.sqlite
+v datovém adresáři (kam přesně, říká datadir.py)
 (tabulka ngram(n, text, cnt), ukládá se od tří výskytů výš). Když čítač
 naroste, jednotlivé výskyty se průběžně zahazují - velmi vzácné n-gramy
 tak mohou být podhodnocené, na otázku "říká se to spojení vůbec?" to
@@ -17,9 +18,10 @@ import re
 import sqlite3
 import sys
 from collections import Counter
-from pathlib import Path
 
-DB = Path(__file__).resolve().parent.parent / "data" / "ngramy.sqlite"
+from datadir import build_dir
+
+DB = build_dir() / "ngramy.sqlite"
 
 TEXT_RE = re.compile(r"<text[^>]*>(.*?)</text>", re.S)
 DROP_RE = re.compile(
@@ -71,7 +73,7 @@ def main():
             counts = Counter({k: v for k, v in counts.items() if v > 1})
             print(f"prořez -> {len(counts)} položek, načteno {read >> 20} MB", file=sys.stderr)
 
-    DB.parent.mkdir(exist_ok=True)
+    DB.parent.mkdir(parents=True, exist_ok=True)
     con = sqlite3.connect(DB)
     con.execute("DROP TABLE IF EXISTS ngram")
     con.execute("CREATE TABLE ngram (n INTEGER, text TEXT, cnt INTEGER)")

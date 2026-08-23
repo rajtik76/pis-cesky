@@ -2,7 +2,8 @@
 """Vypíše valenční rámce českého slovesa z VALLEX 4.5.
 
 Použití: vazby.py <sloveso> [další slovesa...]
-Data:    data/vallex-verbs-4.5.xml (staví se skriptem stahni-data.sh)
+Data:    vallex-verbs-4.5.xml (staví se skriptem stahni-data.sh; kde se
+         hledá, říká datadir.py)
 
 U každého významu vypíše pozice rámce (funktor, povinnost, tvary),
 význam a jeden příklad. Pády se značí zkratkami nom, gen, dat, aku,
@@ -12,8 +13,10 @@ import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
+from datadir import data_file
+
 NS = {"v": "http://ufal.mff.cuni.cz/vallex-2.0"}
-DATA = Path(__file__).resolve().parent.parent / "data" / "vallex-verbs-4.5.xml"
+DATA = data_file("vallex-verbs-4.5.xml")
 
 CASES = {"1": "nom", "2": "gen", "3": "dat", "4": "aku", "5": "vok", "6": "lok", "7": "ins"}
 
