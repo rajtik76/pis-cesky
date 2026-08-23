@@ -118,6 +118,7 @@ z angličtiny což vede k ještě horším výsledkům.
 
 ```
 .claude-plugin/          manifest pluginu a marketplace
+agents/korektor.md       jazykový korektor - definice subagenta
 skills/pis-cesky/
   SKILL.md               obecná pravidla, načtou se vždy
   technicky.md           technický styl, postaveno na reálných textech
@@ -127,7 +128,7 @@ skills/technicky/        zkratka /pis-cesky:technicky
 skills/uredne/           zkratka /pis-cesky:uredne
 skills/data/             /pis-cesky:data - postaví jazyková data
 analyza/                 rozbory zdrojů, ze kterých pravidla vznikla
-nastroje/                ověřování vazeb a spojení v datech
+nastroje/                ověřování vazeb a spojení, kontrola mechaniky
 priklady/                stejná zadání se skillem a bez něj
 ```
 
@@ -157,9 +158,12 @@ Na to je vlastní příkaz:
 /pis-cesky:data
 ```
 
-Ten ví, kam plugin data ukládá, a skript spustí sám. Data zabírají
-na disku zhruba 250 MB a po aktualizaci pluginu se stavějí znovu. Bez nich skill
-funguje dál, ale s tím, že korektor nemůže ověřovat vazby a kolokace v datech.
+Ten ví, kam se data ukládají, a skript spustí sám. Data zabírají na disku
+zhruba 250 MB a leží ve sdíleném adresáři uživatele mimo instalaci
+pluginu (vypíše ho `nastroje/datadir.py`, přepíše proměnná
+`PIS_CESKY_DATA`), takže je aktualizace pluginu nezahodí - stavějí se
+jen jednou. Bez nich skill funguje dál, ale s tím, že korektor nemůže
+ověřovat vazby a kolokace v datech.
 
 Kdo si repo klonuje ručně, může ho stále dát rovnou do adresáře skillů -
 `~/.claude/skills/pis-cesky` - a Claude Code ho podle manifestu načte jako
@@ -216,17 +220,22 @@ měnila se fakta nebo se přepisovaly celé odstavce, jde text na kontrolu
 znovu. Když se opravovaly jen vazby a slova, stačí kolo jedno.
 
 Pozor na cenu. Každý text dostane vlastního korektora a ten spotřebuje
-zhruba 40 až 50 tisíc tokenů - u tří článků tedy počítej se sto padesáti
-tisíci. Za tu cenu ale dostaneš i věcnou kontrolu - v testech korektor
-zachytil rozpor mezi dvěma tvrzeními o passkeys, nesourodý základ dvou
-procent z téhož průzkumu a model zařazený do nesprávné řady. Pro krátké
-texty a poznámky vícefázový režim nepouštěj, běžný průchod skillem stačí.
+zhruba 30 tisíc tokenů - u tří článků tedy počítej se zhruba sto tisíci.
+Korektor běží jako samostatný agent (`agents/korektor.md`) s ořezanou
+výbavou, mechanické kontroly (párové znaky, pomlčky, mezery) převzal
+skript `nastroje/mechanika.py` a dotazy do jazykových dat mají strop tří
+volání; krátké texty do zhruba 300 slov se navíc slučují po dvou až
+třech na jednoho korektora. Za tu cenu dostaneš i věcnou kontrolu -
+v testech korektor zachytil rozpor mezi dvěma tvrzeními o passkeys,
+nesourodý základ dvou procent z téhož průzkumu a model zařazený do
+nesprávné řady. Pro krátké texty a poznámky vícefázový režim nepouštěj,
+běžný průchod skillem stačí.
 
 Skill k tomu doporučuje nejsilnější dostupný model, dnes Opus, protože
-slabší model neselže nahlas: nálezy vrátí, jen povrchní. Ohlídej si přitom
-jednu past - korektor běží na modelu hlavní session, takže když sám jedeš
-na Haiku, dostaneš i korekturu z Haiku. Skill si v takovém případě má
-silnější model vyžádat explicitně.
+slabší model neselže nahlas: nálezy vrátí, jen povrchní. Korektor má
+proto `model: opus` přímo v definici agenta - nehrozí, že by korekturu
+tiše převzal slabší model hlavní session. Druhé kolo, zúžené na kontrolu
+přepsaných pasáží, jede úsporněji na Sonnetu.
 
 Aby texty psané v jedné dávce neměly stejný styl a tudíž nevypadaly stejně, řeší se to
 plánováním před psaním, ne kontrolou po něm: skill si ke každému textu
