@@ -75,7 +75,7 @@ textů). A čeština? Nic! České repozitáře sice existují, ale opisují jed
 Pochází z českých textů psaných lidmi a publikovaných před listopadem 2022, tedy
 předtím, než se generovaný text dostal do běžného provozu.
 
-**Technický styl** - tři korpusy, ~100 tisíc slov. Rozbory v `analyza/`:
+**Technický styl** - tři zdroje, ~100 tisíc slov. Rozbory v `analyza/`:
 
 | Zdroj          | Co odtud                                   | Čím se liší                   |
 |----------------|--------------------------------------------|-------------------------------|
@@ -83,7 +83,7 @@ předtím, než se generovaný text dostal do běžného provozu.
 | blog.root.cz   | 27 článků + diskuse (2020-2021), 10 autorů | komunita, syrové psaní        |
 | nettech.cz     | 10 článků (2015-2021)                      | malá firma, návody bez redakce|
 
-**Úřední styl** - čtyři korpusy, 68 dokumentů, ~180 tisíc slov. Rozbor
+**Úřední styl** - čtyři zdroje, 68 dokumentů, ~180 tisíc slov. Rozbor
 v `analyza/destilace-uredni.md`:
 
 | Zdroj                          | Co odtud                                  | Čím se liší                    |
