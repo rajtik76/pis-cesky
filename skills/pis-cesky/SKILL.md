@@ -113,7 +113,7 @@ průměr.
 ## Pozice pisatele
 
 Sedm pravidel. Nejsou to pravidla čištění hotového textu, jsou to pravidla
-psaní od začátku. Odvozená z ručně psaných českých textů před rokem 2022,
+psaní od začátku. Odvozená z ručně psaných českých textů před listopadem 2022,
 soupis zdrojů je v README.
 
 ### 1. Piš z pozice někoho, kdo tam byl
