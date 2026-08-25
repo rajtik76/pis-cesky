@@ -1,6 +1,6 @@
 {
   "name": "pis-cesky",
-  "description": "Psaní českých textů, které nezní jako generovaná šablona. Pravidla destilovaná ze zdrojů českých textů psaných lidmi před rokem 2022.",
+  "description": "Psaní českých textů, které nezní jako generovaná šablona. Pravidla destilovaná ze zdrojů českých textů psaných lidmi před listopadem 2022; sporné vazby a spojení ověřuje v datech z VALLEXu a české Wikipedie.",
   "version": "0.3.1",
   "author": {
     "name": "Vladislav Rajtmajer"
@@ -13,6 +13,7 @@
     "czech",
     "writing",
     "anti-slop",
-    "style"
+    "style",
+    "vallex"
   ]
 }

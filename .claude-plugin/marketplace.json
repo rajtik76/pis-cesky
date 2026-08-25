@@ -9,7 +9,7 @@
     {
       "name": "pis-cesky",
       "source": "./",
-      "description": "Psaní českých textů, které nezní jako generovaná šablona. Obsahuje obecná pravidla, technický a úřední styl a vícefázový režim s korekturou."
+      "description": "Psaní českých textů, které nezní jako generovaná šablona. Obsahuje obecná pravidla, technický a úřední styl, vícefázový režim s korekturou a ověřování vazeb v lokálních jazykových datech."
     }
   ]
 }
