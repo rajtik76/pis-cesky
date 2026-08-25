@@ -4,3 +4,4 @@
 /.claude/
 /.idea/
 /test/
+__pycache__/
