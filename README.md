@@ -5,13 +5,13 @@
 [![Jazyk](https://img.shields.io/badge/jazyk-čeština-11457E)](README.md)
 [![Licence](https://img.shields.io/badge/licence-MIT-green)](LICENSE)
 
-Plugin pro Claude Code, který mění způsob, jakým model generuje české texty. 
-Ne tím, že by mu zakazoval jednotlivá slova nebo výrazy, ale tím, že mu určuje pozici, ze které text vzniká. 
-Můj názor je ten, že rozdíl mezi lidským a AI textem v češtině není ve slovníku, ale 
+Plugin pro Claude Code, který mění způsob, jakým model generuje české texty.
+Ne tím, že by mu zakazoval jednotlivá slova nebo výrazy, ale tím, že mu určuje pozici, ze které text vzniká.
+Můj názor je ten, že rozdíl mezi lidským a AI textem v češtině není ve slovníku, ale
 v tom, kdo a jak obsah vypráví.
 
-Samozřejmě jsem si vědom toho, že to není univerzální nástroj pro tvorbu dokonalých 
-českých textů. Je to jen můj aktuální pohled na to, jak současné AI modely generují české texty, 
+Samozřejmě jsem si vědom toho, že to není univerzální nástroj pro tvorbu dokonalých
+českých textů. Je to jen můj aktuální pohled na to, jak současné AI modely generují české texty,
 a pokus s tím něco udělat.
 Cílem nebylo vytvořit skill, aby AI psala jako člověk ale aby generovala texty, které budou
 pro člověka lépe čitelné a aby se odstranily ty doslovné překlady z AJ, které v češtině
@@ -70,6 +70,57 @@ neprávem označí za slop. Rozdíl není v tom, co je napsané, ale jak.
 (Buffer analyzoval 52 milionů příspěvků, Wikipedie vede přehled typických znaků AI
 textů). A čeština? Nic! České repozitáře sice existují, ale opisují jeden od druhého.
 
+## Model si o češtině nerozhodne sám
+
+Frekvenční data o generované češtině tedy nemám. Data o češtině samotné
+ale ano - a ta odpovídají na jinou, praktičtější otázku.
+
+Generovaná čeština má jednu zákeřnou vlastnost: spojení bývá gramaticky
+možné i významově srozumitelné, jenže ho žádný český mluvčí takto nepoužije.
+A model vlastní práci posoudit neumí - když se ho zeptáš, jestli spojení
+zní česky, většinou si svou volbu obhájí.
+
+Proto korektor u sporné vazby nehádá od oka. Ve složce `nastroje/` jsou
+dva skripty, které sahají do lokální databáze:
+
+- `vazby.py přiznat` - valenční rámce slovesa z VALLEXu 4.5 (2 772
+  českých sloves, ÚFAL UK): jaké pády, předložky a spojky si sloveso
+  žádá a jaký má vid
+- `spojeni.py "hraje klíčovou roli"` - frekvence spojení v n-gramech
+  z české Wikipedie
+
+Frekvenční kontrola má slabinu: nerozliší "tohle se neříká" od "tohle
+korpus nepokrývá". Korektor to řeší kontrolní kolokací - k podezřelému
+spojení přibalí do téže dávky spojení, o kterém ví, že je správné. Nula
+jen u podezřelého ukazuje, že vada je ve vazbě; nula u obou znamená, že
+data na doménu nestačí a rozhoduje úsudek.
+
+A poctivě k rozsahu, ať to nevypadá robustněji, než to je: nejde
+o kontrolu každé věty. Do dat si smí sáhnout i skill při psaní, ale
+pravidelně je používá až korektor ve vícefázovém režimu - a i ten smí na
+text položit nejvýš tři dotazy. Zbytek pořád rozhoduje úsudkem. Dokud
+data nepostavíš, běží skill i korektor dál, jen bez téhle opory.
+
+```
+zadání -> skill (pravidla stylu) -> draft
+                                      |
+                           korektor (nezná zadání)
+                                      |  max 3 dotazy
+                            +---------+---------+
+                            |                   |
+                        vazby.py            spojeni.py
+                        VALLEX 4.5          n-gramy z Wikipedie
+                            |                   |
+                            +-- lokální data ---+
+                                      |
+                               nálezy -> přepis
+```
+
+VALLEX je pod licencí CC BY-NC-SA, tedy jen pro nekomerční užití. Proto
+a kvůli velikosti se data nedistribuují s pluginem - každý si je postaví
+na svém stroji příkazem `/pis-cesky:data` (250 MB na disku, podrobnosti
+v sekci Instalace).
+
 ## Zdroje dat
 
 Pochází z českých textů psaných lidmi a publikovaných před listopadem 2022, tedy
@@ -104,16 +155,15 @@ spolehlivěji než u blogů. Část dokumentů, které úřady mezitím z webu
 stáhly, pochází z Wayback Machine.
 
 Stažené texty se do repa necommitují, `data/` je v `.gitignore` - z rozborů
-v `analyza/` je u každého vzorce vidět zdroj i citace. Nástroje ve složce
-`nastroje/` navíc stavějí na veřejných datech: VALLEX 4.5 (valenční
-slovník sloves, ÚFAL UK, CC BY-NC-SA) a české Wikipedii (frekvence
-spojení, CC BY-SA).
+v `analyza/` je u každého vzorce vidět zdroj i citace. Jazyková data pro
+`nastroje/` stojí na jiných zdrojích: VALLEX 4.5 (ÚFAL UK, CC BY-NC-SA)
+a česká Wikipedie (CC BY-SA), viz kap. výše.
 
 ## Jak to celé funguje
 
 Univerzální "piš česky jako člověk" je zadání bez obsahu. Cestopis, technický
 návod a úřední dokument se chovají jazykově jinak a pravidlo, které platí pro
-všechny tři, tím pádem u AI nefunguje. Navíc má silné sklony k doslovným překladům 
+všechny tři, tím pádem u AI nefunguje. Navíc má silné sklony k doslovným překladům
 z angličtiny což vede k ještě horším výsledkům.
 
 ```
@@ -138,7 +188,7 @@ a marketingový svůj teprve dostanou a do té doby jedou na obecných
 pravidlech.
 
 Protože skill není detektor, ale předpis, na doplnění dalšího žánru nepotřebuješ
-dvojici AI text vs. lidský text. Stačí dobré lidské psaní v tom žánru.
+dvojici AI text vs. lidský text. Stačí kvalitní texty psané lidmi v daném žánru.
 
 ## Instalace
 
@@ -242,16 +292,11 @@ plánováním před psaním, ne kontrolou po něm: skill si ke každému textu
 předem vypíše osu, první větu, konec a autorskou pózu, porovná je a začne s generováním.
 Ukázky obou sad najdeš v adresáři `priklady/`.
 
-Korektura se navíc může opřít o lokální jazyková data - `nastroje/` umí
-stáhnout VALLEX (valenční rámce 2 772 českých sloves, CC BY-NC-SA)
-a postavit frekvenční databázi spojení z české Wikipedie. Jak si je
-postavit, je v sekci Instalace.
-
-Vazbu slovesa pak ověříš příkazem `vazby.py přiznat` a existenci spojení
-příkazem `spojeni.py "hraje klíčovou roli"`. Skill si je volá plnou
-cestou přes `${CLAUDE_PLUGIN_ROOT}`, protože relativní cesta by mířila do
-adresáře, kde zrovna pracuješ, ne do pluginu. Skripty si data hledají
-podle svého vlastního umístění, takže je můžeš spustit odkudkoli.
+Skripty na ověřování vazeb a spojení (viz kap. "Model si o češtině
+nerozhodne sám") si skill volá plnou cestou přes `${CLAUDE_PLUGIN_ROOT}`,
+protože relativní cesta by mířila do adresáře, kde zrovna pracuješ, ne do
+pluginu. Data si hledají podle svého vlastního umístění, takže je můžeš
+spustit odkudkoli.
 
 ## Příklady promptů
 
@@ -341,5 +386,5 @@ ověřit - detektorem AI textu to tady změřit nejde, cílem není projít jako
 ## Závěr
 Tento repozitář není, jako mnoho jiných, plně generovaný pomocí AI.
 AI samozřejmě k jeho tvorbě používám (přece jenom je to AI skill)  
-ale převážně k analýze a testování výsledků. Drtivou většinu obsahu manuálně 
+ale převážně k analýze a testování výsledků. Drtivou většinu obsahu manuálně
 reviduji a testuji.
