@@ -1,7 +1,7 @@
 {
   "name": "pis-cesky",
   "description": "Psaní českých textů, které nezní jako generovaná šablona. Pravidla destilovaná ze zdrojů českých textů psaných lidmi před rokem 2022.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": {
     "name": "Vladislav Rajtmajer"
   },
