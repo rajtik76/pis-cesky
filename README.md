@@ -80,8 +80,10 @@ a napíše text, který na první pohled nevypadá jako přeložený z angličti
   nepřebírá; výstup je nový text.
 - **Vlastní žánrová pravidla mají zatím dva styly** - technický (článek,
   návod, dokumentace, README) a úřední (žádost, odvolání, stížnost,
-  odpověď úřadu, metodika). Obojí je postavené na rozboru reálných textů
-  psaných lidmi.
+  odpověď úřadu, metodika). Pravidla stojí na rozboru textů, které psali
+  lidé: 79 tisíc slov ze tří technických blogů a 180 tisíc slov z 68
+  úředních dokumentů, všechno publikované před listopadem 2022. Soupis
+  zdrojů je v [docs/metodika.md](docs/metodika.md).
 - Osobní text a marketing napíše taky, ale řídí se u nich jen obecnou
   částí, takže výsledek nemá o co opřít. Další styly budu přidávat
   postupně, vždycky až po rozboru vzorků.
@@ -123,6 +125,14 @@ Abych nepřeháněl: nejde o kontrolu každé věty. Pravidelně data používá
 korektor ve vícefázovém režimu a i ten smí položit nejvýš tři dotazy na
 text. Jak korektor odliší "tohle se neříká" od "tohle korpus nepokrývá",
 je v [docs/jazykova-data.md](docs/jazykova-data.md).
+
+## Stav
+
+Rozpracované jsou obecná pravidla, technický styl, úřední styl
+a vícefázový režim. Osobní text čeká na rozbor vzorků, marketing na vzorky samotné.
+U úředního stylu vím o dvou mezerách a pravidlo o klišé s odstupem zatím
+neumím formulovat tak, aby ho model použil a nejen odkýval; obojí
+rozvádí [docs/metodika.md](docs/metodika.md).
 
 ## Kde je co
 
