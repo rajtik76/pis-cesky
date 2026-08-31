@@ -55,6 +55,46 @@ jednací, datum rozhodnutí), takže hranice před listopadem 2022 tu drží
 spolehlivěji než u blogů. Část dokumentů, které úřady mezitím z webu
 stáhly, pochází z Wayback Machine.
 
+**Marketingový styl** - deset zdrojů, 239 článků, ~196 tisíc slov.
+Rozbor v `analyza/destilace-marketing.md`, dílčí rozbory po osách
+(`marketing-bonami.md`, `marketing-notino.md`, `marketing-vceliste.md`,
+`marketing-b2c-eshopy.md`, `marketing-b2b-finance.md`,
+`marketing-vyrobce-casopis.md`):
+
+| Zdroj                  | Co odtud                            | Čím se liší                              |
+|------------------------|-------------------------------------|------------------------------------------|
+| bonami.cz              | 49 článků magazínu (2019-2020)      | e-shop s bydlením, krátké texty k fotkám |
+| blog.notino.cz         | 41 článků + O nás (2017-2021)       | e-shop s kosmetikou, hosté v 1. osobě    |
+| blog.rohlik.cz         | 20 článků (2016-2021)               | online supermarket, rozhovory s dodavateli |
+| blog.decathlon.cz      | 12 článků, 9 autorů (2020-2021)     | sportovní řetězec, mužský čtenář, esej   |
+| blog.fischer.cz        | 15 článků (2020-2021)               | cestovní kancelář, průvodcovský registr  |
+| vceliste.cz            | 40 článků, 24 autorů (2011-2021)    | agentura, praktici i prodejci služby     |
+| blog.freelo.cz         | 15 článků, 12 autorů (2016-2021)    | B2B software, autoři v 1. osobě          |
+| portu.cz/blog          | 20 článků, 9 autorů (2017-2021)     | finance, čísla se zdrojem, bez imperativu |
+| skoda-storyboard.com   | 12 článků (2016-2021)               | výrobce, značka jako téma, ne nabídka    |
+| maximum.drmax.cz       | 15 článků (2016-2021)               | zákaznický časopis, produkt nula         |
+
+Sedm oborů, pět typů firem, tři čtenáři (žena B2C, muž B2C, podnikatel).
+Všechny zdroje jsou z Wayback Machine, každý článek má v hlavičce odkaz na
+snapshot do konce roku 2021. U Včeliště to bylo nutné: živý web prošel po
+roce 2022 revizí a tři články byly přepsané, jeden z 85 %. Vedle korpusu
+stojí sekundární zdroj - 16 rozborů jazyka české reklamy z Markething.cz
+(2012-2021), viz `analyza/markething-sekundarni.md`. Nejsou to vzory, ale
+kritika zevnitř oboru: co Češi na českém marketingu považovali za chybu
+dřív, než existoval generovaný text.
+
+Hlavní nález destilace: obsahový marketing nemá jeden hlas, ale čtyři
+registry podle vzdálenosti od pokladny - prodejce-rádce, praktik-firma,
+vypravěč, vydavatel - a korpus je nemíchá. Imperativ klesá s vzdáleností
+od pokladny (e-shop 1,9 na 100 slov, výrobce 0,1), superlativ je nejvyšší
+tam, kde chybí autor, a drží ho číslo.
+
+Krátké prodejní copy (slogan, landing page, newsletter) se před rokem
+2022 v použitelném objemu sehnat nepodařilo: soutěžní archivy jsou
+obrazové, diplomky citují reklamu screenshotem, Webarchiv NK je přístupný
+jen v budově knihovny. Ke krátkému copy tak skill mluví jen přes
+Markething a říká to.
+
 Stažené texty se do repa necommitují, `data/` je v `.gitignore` - z rozborů
 v `analyza/` je u každého vzorce vidět zdroj i citace. Jazyková data pro
 `nastroje/` stojí na jiných zdrojích: VALLEX 4.5 (ÚFAL UK, CC BY-NC-SA)
@@ -74,9 +114,11 @@ skills/pis-cesky/
   SKILL.md               obecná pravidla, načtou se vždy
   technicky.md           technický styl, postaveno na reálných textech
   uredni.md              úřední styl, postaveno na reálných textech
+  marketing.md           marketingový styl, postaveno na reálných textech
   vicefazove.md          draft → korektura bez záměru → přepis
 skills/technicky/        zkratka /pis-cesky:technicky
 skills/uredne/           zkratka /pis-cesky:uredne
+skills/marketing/        zkratka /pis-cesky:marketing
 skills/data/             /pis-cesky:data - postaví jazyková data
 analyza/                 rozbory zdrojů, ze kterých pravidla vznikla
 nastroje/                ověřování vazeb a spojení, kontrola mechaniky
@@ -85,17 +127,22 @@ docs/                    tenhle adresář
 ```
 
 Soubory se načítají, až když jsou potřeba - kořenový SKILL.md řekne, který
-otevřít. Skill má zatím technický a úřední styl; osobní
-a marketingový svůj teprve dostanou a do té doby jedou na obecných
-pravidlech.
+otevřít. Skill má technický, úřední a marketingový styl; osobní text
+svůj teprve dostane a do té doby jede na obecných pravidlech.
 
 Protože skill není detektor, ale předpis, na doplnění dalšího žánru nepotřebuješ
 dvojici AI text vs. lidský text. Stačí kvalitní texty psané lidmi v daném žánru.
 
 ## Stav
 
-Rozpracované: obecná pravidla, technický styl, úřední styl a vícefázový
-režim. Osobní text čeká na rozbor vzorků, marketing na vzorky samotné.
+Rozpracované: obecná pravidla, technický styl, úřední styl, marketingový
+styl a vícefázový režim. Osobní text čeká na rozbor vzorků.
+
+U marketingového stylu je mezera pojmenovaná výš: korpus je obsahový
+marketing, krátké prodejní copy chybí. Decathlon a Fischer mají jen
+2020-2021 (starší archiv neexistuje), Škoda a Dr.Max jsou jediní
+zástupci svého typu a část Škody je překlad z němčiny - vzorce doložené
+jen tam jsou v destilaci označené jako slabší.
 
 U úředního stylu vím o dvou mezerách. Korpus stojí na textech, které píší
 úřady - žádost, odvolání ani stížnost z druhé strany v něm nejsou jako

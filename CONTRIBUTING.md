@@ -37,8 +37,8 @@ stylového souboru.
 
 ## Navrhnout nový styl
 
-Dnes existují dva: `technicky.md` a `uredni.md`. Marketing a osobní text
-na vlastní pravidla čekají. Nový stylový soubor nevzniká z blacklistu ani
+Dnes existují tři: `technicky.md`, `uredni.md` a `marketing.md`. Osobní
+text na vlastní pravidla čeká. Nový stylový soubor nevzniká z blacklistu ani
 z intuice, ale ze stejného postupu jako ty dva hotové:
 
 1. **Nasbírej vzorek.** Aspoň tři na sobě nezávislé zdroje daného stylu,

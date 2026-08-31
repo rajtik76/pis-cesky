@@ -21,11 +21,12 @@ s uvedením stylu, podle kterého text vzniká:
 ```
 🇨🇿 Píšu česky (styl: technický)
 🇨🇿 Píšu česky (styl: úřední)
+🇨🇿 Píšu česky (styl: marketingový)
 🇨🇿 Píšu česky (styl: obecný)
 ```
 
 Styl odpovídá modulu z tabulky níže (`technicky.md` → technický,
-`uredni.md` → úřední); když žádný modul nesedí a píšeš jen podle tohoto
+`uredni.md` → úřední, `marketing.md` → marketingový); když žádný modul nesedí a píšeš jen podle tohoto
 souboru, uveď "obecný". Když text spadá do dvou stylů, vypiš oba
 ("styl: technický + úřední"). Hlášku vypiš jednou na začátku, ne u
 každého odstavce, a pak pokračuj běžnou odpovědí. Uživatel podle ní
@@ -41,7 +42,9 @@ zadání si navíc otevři soubor, který odpovídá:
 |---|---|
 | technický článek, návod, dokumentaci, README, popis architektury | `technicky.md` |
 | žádost, odvolání, stížnost, odpověď úřadu, rozhodnutí, metodiku, formální dopis instituci | `uredni.md` |
-| osobní text, marketing | zatím nevzniklo - drž se pravidel níže |
+| článek na firemní blog nebo do magazínu e-shopu, návod či přehled kolem produktu, stránku O nás, firemní bilanci, delší produktový text | `marketing.md` |
+| slogan, landing page, produktovou kartu, newsletter | `marketing.md`, sekce "Krátké copy" - a řekni uživateli, že tam stojí jen na sekundárním zdroji |
+| osobní text | zatím nevzniklo - drž se pravidel níže |
 
 Když text spadá do dvou kategorií, otevři oba soubory.
 
@@ -51,6 +54,8 @@ odpovídající soubor:
 
 - `technicky.md` - argument `technicky`, `technický`, `tech`
 - `uredni.md` - argument `uredne`, `úředně`, `uredni`, `urad`
+- `marketing.md` - argument `marketing`, `marketingově`, `marketingovy`,
+  `reklama`
 
 Ber to volně: rozhoduje význam, ne přesný tvar. Argument bývá zamíchaný
 do zadání (`/pis-cesky:pis-cesky uredne napiš odvolání`), takže styl z něj vyzobni

@@ -78,15 +78,21 @@ a napíše text, který na první pohled nevypadá jako přeložený z angličti
 - Podkladem může být cokoli - téma, tvoje poznámky, stažená stránka, cizí
   dokument. Skill si z něj vezme informace, ale formulace ani stavbu
   nepřebírá; výstup je nový text.
-- **Vlastní žánrová pravidla mají zatím dva styly** - technický (článek,
-  návod, dokumentace, README) a úřední (žádost, odvolání, stížnost,
-  odpověď úřadu, metodika). Pravidla stojí na rozboru textů, které psali
-  lidé: 79 tisíc slov ze tří technických blogů a 180 tisíc slov z 68
-  úředních dokumentů, všechno publikované před listopadem 2022. Soupis
-  zdrojů je v [docs/metodika.md](docs/metodika.md).
-- Osobní text a marketing napíše taky, ale řídí se u nich jen obecnou
-  částí, takže výsledek nemá o co opřít. Další styly budu přidávat
-  postupně, vždycky až po rozboru vzorků.
+- **Vlastní žánrová pravidla mají zatím tři styly** - technický (článek,
+  návod, dokumentace, README), úřední (žádost, odvolání, stížnost,
+  odpověď úřadu, metodika) a marketingový (článek na firemní blog nebo do
+  magazínu e-shopu, návod kolem produktu, rozhovor, stránka O nás,
+  zákaznický časopis). Pravidla stojí na rozboru textů, které psali
+  lidé: 79 tisíc slov ze tří technických blogů, 180 tisíc slov z 68
+  úředních dokumentů a 196 tisíc slov z 239 marketingových článků deseti
+  firem, všechno publikované před listopadem 2022. Soupis zdrojů je
+  v [docs/metodika.md](docs/metodika.md).
+- Marketingový styl pokrývá obsahový marketing. Krátké prodejní copy
+  (slogan, landing page, newsletter) v korpusu není - skill u něj řekne,
+  že se opírá jen o sekundární zdroj.
+- Osobní text napíše taky, ale řídí se u něj jen obecnou částí, takže
+  výsledek nemá o co opřít. Další styly budu přidávat postupně, vždycky
+  až po rozboru vzorků.
 - Umí si na sebe zavolat korekturu: nezávislý agent, který nezná zadání,
   projde draft a hledá chyby, které autor při vlastním čtení nevidí.
 
@@ -128,8 +134,9 @@ je v [docs/jazykova-data.md](docs/jazykova-data.md).
 
 ## Stav
 
-Rozpracované jsou obecná pravidla, technický styl, úřední styl
-a vícefázový režim. Osobní text čeká na rozbor vzorků, marketing na vzorky samotné.
+Rozpracované jsou obecná pravidla, technický styl, úřední styl,
+marketingový styl a vícefázový režim. Osobní text čeká na rozbor vzorků.
+Marketingový korpus je obsahový marketing; krátké prodejní copy chybí.
 U úředního stylu vím o dvou mezerách a pravidlo o klišé s odstupem zatím
 neumím formulovat tak, aby ho model použil a nejen odkýval; obojí
 rozvádí [docs/metodika.md](docs/metodika.md).

@@ -11,6 +11,7 @@ stylu text vzniká:
 ```
 🇨🇿 Píšu česky (styl: technický)
 🇨🇿 Píšu česky (styl: úřední)
+🇨🇿 Píšu česky (styl: marketingový)
 🇨🇿 Píšu česky (styl: obecný)
 ```
 
@@ -25,12 +26,13 @@ Styl vynutíš dvěma způsoby. Buď zkratkou:
 ```
 /pis-cesky:uredne napiš odvolání proti platebnímu výměru
 /pis-cesky:technicky popiš, jak zapnout OPcache
+/pis-cesky:marketing napiš článek na blog e-shopu o výběru matrace
 ```
 
 nebo argumentem hlavního příkazu (`/pis-cesky:pis-cesky uredne ...`),
 případně prostou větou ("piš to úředně"). Na tvaru argumentu nezáleží,
 projde `uredne`, `úředně` i `uredni`, u technického stylu `technicky`
-i `tech`.
+i `tech`, u marketingového `marketing`, `marketingově` i `reklama`.
 
 Zkratky nekopírují pravidla, jen přeskočí určování žánru. Hodí se, když
 zadání samo o sobě žánr neprozradí - třeba u úředního dopisu
